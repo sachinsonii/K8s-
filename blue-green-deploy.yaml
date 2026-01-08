@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: apache
+        version: blue
+    spec:
+      containers:
+      - name: apache
+        image: httpd:2.4
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache
+      version: green
+  template:
+    metadata:
+      labels:
+        app: apache
+        version: green
+    spec:
+      containers:
+      - name: apache
+        image: httpd:2.4
+        ports:
+        - containerPort: 80
